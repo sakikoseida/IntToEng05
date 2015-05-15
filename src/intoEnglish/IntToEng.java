@@ -22,6 +22,8 @@ public class IntToEng {
     	int tenrank=n/10;
     	int unit=n%10;
     	int hrank=tenrank/10;
+   
+    	
     	if(n==0){
     	return "zero";
     	}else if(0<n&&n<20){    	
@@ -31,9 +33,18 @@ public class IntToEng {
     	}else if(n<120){
     		return a[hrank]+" hundred "+a[n%100]; 
     	}else if(n<1000){
-    		return a[hrank]+" hundred "+b[n%100/10]+" "+a[n%100%10];
+    		if(n%100%10==0){	
+    			return a[hrank]+" hundred "+b[n%100/10];
+    		} else
+    			return a[hrank]+" hundred "+b[n%100/10]+" "+a[n%100%10];
     	}else if(n==1000){
-    		return "thousand";
+    		return "one thousand";
+    	}else if(n<2000){
+    		if(n%1000%100%10==0){
+    			return "one thousand " +a[hrank]+" hundred "+b[n%100/10];
+    		}else
+    			return "one thousand " +a[hrank%10]+" hundred "+b[n%100/10]+" "+a[n%100%10];
+    		
     	}
     	//a[hrank]で100のくらい。n%100で下２桁。
     	
